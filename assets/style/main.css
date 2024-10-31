@@ -23,7 +23,7 @@ header .column{
     display: flex;
     align-items: center;
 }
-haeder .column span{
+header .column span{
     font-weight: 500;
     margin-right: 15px;
     font-size: 1.19rem;
@@ -35,3 +35,10 @@ haeder .column span{
 
 }
 
+
+.keys-check input{
+    width: 60px;
+    height: 30px;
+    border-radius: 30px;
+    background-color: #474747;
+}
