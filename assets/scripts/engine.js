@@ -15,4 +15,6 @@ teclasPiano.forEach((key) => {
 
 
 
-document.addEventListener("keydown")
+document.addEventListener("keydown",(e)=>{
+    console.log(e.key)
+})
