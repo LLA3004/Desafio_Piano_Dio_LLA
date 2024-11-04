@@ -1,46 +1,45 @@
-const teclasPiano = document.querySelectorAll(".piano-keys .key ")
+const teclasPiano = document.querySelectorAll(".piano-keys .key");
+const volumeSlider = document.querySelector(".volume-slider input");
+const keysCheck = document.querySelector(".keys-check input");
 
-const volumeSlider = document.querySelector(".volume-slider input")
+let mapedKeys = [];
 
-const keysCheck = document.querySelector(".keys-check input")
-
-let mapedKeys = []
-let audio = new Audio("assets/tunes/a.wav");
-
+// Função para tocar o som de uma tecla
 const playTune = (key) => {
-    
-   audio.src=`assets/tunes/${key}.wav`
+    const audio = new Audio(`assets/tunes/${key}.wav`); // Cria um novo objeto Audio
+    audio.volume = volumeSlider.value; // Aplica o volume atual do slider
     audio.play();
-   
+
     const clickedKey = document.querySelector(`[data-key="${key}"]`);
     clickedKey.classList.add("active");
-    setTimeout(()=>{
-        clickedKey.classList.remove("active")
-    },150)
+    setTimeout(() => {
+        clickedKey.classList.remove("active");
+    }, 150);
 };
 
+// Configura eventos de clique para cada tecla do piano
 teclasPiano.forEach((key) => {
-    console.log(key.dataset.key);
-    key.addEventListener("click", () =>playTune(key.dataset.key));
-    mapedKeys.push(key.dataset.key)
+    key.addEventListener("click", () => playTune(key.dataset.key));
+    mapedKeys.push(key.dataset.key);
 });
 
-
-
-document.addEventListener("keydown",(e)=>{
-    if(mapedKeys.includes(e.key)){
-    playTune(e.key)
+// Configura evento de pressionamento de tecla para o teclado
+document.addEventListener("keydown", (e) => {
+    if (mapedKeys.includes(e.key)) {
+        playTune(e.key);
     }
-})
+});
 
-const handleVolume = (e)=>{
-    audio.volume = e.target.value
-    
-}
+// Função para ajustar o volume de todas as novas instâncias de áudio
+const handleVolume = (e) => {
+    volumeSlider.value = e.target.value;
+};
 
-const showHiddenKeys = () =>{
-    teclasPiano.forEach(key => key.classList.toggle("hide"))
-}
-volumeSlider.addEventListener("input", handleVolume)
+// Função para mostrar ou ocultar teclas
+const showHiddenKeys = () => {
+    teclasPiano.forEach(key => key.classList.toggle("hide"));
+};
 
-keysCheck.addEventListener("click", showHiddenKeys)
+// Eventos para controlar volume e visibilidade das teclas
+volumeSlider.addEventListener("input", handleVolume);
+keysCheck.addEventListener("click", showHiddenKeys);
