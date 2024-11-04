@@ -129,3 +129,9 @@ header .column span{
     box-shadow: inset -5px 5px 20px rgba(0, 0, 0, 0.2);
     background: linear-gradient(to bottom, #fff 0%, #eee 100%);
 }
+
+
+.piano-keys .key.hide span{
+    display: none;
+
+}

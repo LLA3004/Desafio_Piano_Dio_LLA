@@ -1,6 +1,9 @@
 const teclasPiano = document.querySelectorAll(".piano-keys .key ")
 
 const volumeSlider = document.querySelector(".volume-slider input")
+
+const keysCheck = document.querySelector(".keys-check input")
+
 let mapedKeys = []
 let audio = new Audio("assets/tunes/a.wav");
 
@@ -34,4 +37,10 @@ const handleVolume = (e)=>{
     audio.volume = e.target.value
     
 }
-volumeSlider.addEventListener("input", handleVolume   )
+
+const showHiddenKeys = () =>{
+    teclasPiano.forEach(key => key.classList.toggle("hide"))
+}
+volumeSlider.addEventListener("input", handleVolume)
+
+keysCheck.addEventListener("click", showHiddenKeys)
